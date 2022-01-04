@@ -1,0 +1,18 @@
+This is the explanation of the phase 2 of the TextConference lab.
+
+The additional features we have implemented based on the phase 1 of the TextConference lab are Registration and Direct Message.
+
+1. As the function of Registration is implemented, we thought that it is unreasonable to connect the client to the server together with the command /login.
+Therefore, we split the connect command as "/connect <ip> <port>", and once the client is connected to the server, users won't have to type the server ip and port
+together with Login command and Register Command. The new login command is "/login <username> <password>" and the register command is "/register <username> <password>".
+Notice that all the users' usernames and passwords are stored in the local file in the client folder call accounts.txt and it has some default accounts' information.
+When server starts and runs, it will read the account information from the accounts.txt file and store the information as a linked list for credential. And whenever a
+new account is registered, the information will be append in the linked list and the accounts.txt, therefore, whenever the server is terminated, the account information
+can still be found in the local txt files. The user cannot create an account with username that has already been taken.
+
+2. To use the Direct Message command, user may need to know which users are online and are available for him/ her to send the DM with. By using the "/listuser"
+command, users can check all the users are currently login the TextConference. When server is processing this command, it will go through the account linked list
+and check the boolean value of loggedin (initially false, was set to true when the account is logged in). To distinguish with the command showing users in sessions,
+we changed the "/list" command into "/listsession". The user can then send DM to a user who is online now by using command "/<username> <message>". The user who
+received the DM will get a message of "<username> <message>" where username is the sender's username. You may send DM while you are in the session, and you can
+distinguish the session message as its format is "<sessionname> <message>".
